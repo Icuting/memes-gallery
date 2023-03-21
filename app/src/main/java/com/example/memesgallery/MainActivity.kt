@@ -95,20 +95,19 @@ fun MemesGalleryScreen() {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            // TODO: refactor function onClick [1]
-            EditImageButton("Next", onClick = {
-                if(currentIndex == listImg.size - 1) {
-                    currentIndex = 0
-                }else{
-                    currentIndex += 1
-                }
-                currentImg = listImg[currentIndex]
-            })
             EditImageButton("Prev", onClick = {
                 if(currentIndex == 0) {
                     currentIndex = listImg.size - 1
                 }else{
                     currentIndex -=1
+                }
+                currentImg = listImg[currentIndex]
+            })
+            EditImageButton("Next", onClick = {
+                if(currentIndex == listImg.size - 1) {
+                    currentIndex = 0
+                }else{
+                    currentIndex += 1
                 }
                 currentImg = listImg[currentIndex]
             })
@@ -127,19 +126,19 @@ fun ImagePreview(
             Modifier
                 .border(3.dp, Color.DarkGray)
                 .padding(20.dp)
-                .height(500.dp)
+                .height(400.dp)
                 .fillMaxWidth(),
-
         )
         Spacer(Modifier.height(16.dp))
         Column(
             Modifier
                 .fillMaxWidth()
+                .height(150.dp)
                 .shadow(
                     elevation = 4.dp,
                 )
-                .padding(15.dp)
-
+                .padding(15.dp),
+            verticalArrangement = Arrangement.Center
             ) {
             Text(
                 text = img.title,
@@ -170,25 +169,6 @@ fun EditImageButton(
         }
     }
 }
-// TODO: refactor function onClick [1]
-//fun nextImg(
-//    currentIndex: Int,
-//    listImg: List<Int>,
-//    currentImage: Int,
-//) {
-//    if(currentIndex == listImg.size) {
-//        val currentIndex = 0
-//    }
-//
-//}
-//
-//fun prevImg(
-//    currentIndex: Int,
-//    listImg: List<Int>,
-//    currentImage: Int,
-//) {
-//
-//}
 
 @Preview(showBackground = true)
 @Composable
