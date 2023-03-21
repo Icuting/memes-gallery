@@ -25,6 +25,44 @@ import com.example.memesgallery.ui.theme.MemesGalleryTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 
+data class Meme(
+    val src: Int,
+    val title: String,
+    val description: String
+)
+
+val listImg = listOf<Meme>(
+    Meme(
+        src = R.drawable.meme_1,
+        title = "SpongeBob SquarePants",
+        description = "SpongeBob SquarePants shows a rainbow"
+    ),
+    Meme(
+        R.drawable.meme_2,
+        title = "Pepe the Frog",
+        description = "Pepe the Frog is a cartoon character and Internet meme created by cartoonist Matt Furie."
+    ),
+    Meme(
+        R.drawable.meme_3,
+        title = "untitled meme",
+        description = "Just a funny meme"
+    ),
+    Meme(
+        R.drawable.meme_4,
+        title = "untitled meme",
+        description = "Just a funny meme"
+    ),
+    Meme(
+        R.drawable.meme_5,
+        title = "untitled meme",
+        description = "Just a funny meme"
+    ),
+    Meme(
+        R.drawable.meme_6,
+        title = "Philip J. Fry - Futurama",
+        description = "Shut up and take my money"
+    )
+)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +82,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MemesGalleryScreen() {
-    val listImg = listOf(R.drawable.meme_1, R.drawable.meme_2, R.drawable.meme_3, R.drawable.meme_4, R.drawable.meme_5)
     var currentIndex by remember { mutableStateOf(0) }
     var currentImg by remember { mutableStateOf(listImg[currentIndex]) }
     Column(
@@ -81,12 +118,12 @@ fun MemesGalleryScreen() {
 
 @Composable
 fun ImagePreview(
-    img:Int = R.drawable.meme_1
+    img: Meme
 ) {
     Column {
         Image(
-            painter = painterResource(img),
-            contentDescription = "a",
+            painter = painterResource(img.src),
+            contentDescription = img.title,
             Modifier
                 .border(3.dp, Color.DarkGray)
                 .padding(20.dp)
@@ -105,14 +142,14 @@ fun ImagePreview(
 
             ) {
             Text(
-                text = "title photo",
+                text = img.title,
                 Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(5.dp),
                 fontWeight = FontWeight(700)
             )
             Text(
-                text = "description photo",
+                text = img.description,
                 Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(5.dp)
@@ -160,3 +197,4 @@ fun DefaultPreview() {
         MemesGalleryScreen()
     }
 }
+
